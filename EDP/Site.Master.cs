@@ -11,7 +11,7 @@ namespace EDP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack) { txt_Search.Text = Request.QueryString["q"]; }
         }
 
         protected void lnbtn_Search_Click(object sender, EventArgs e)
