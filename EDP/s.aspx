@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class=" row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body" style="text-align: center">
                         <asp:LinkButton ID="lnkbtn_ClearFilter" runat="server" CssClass="btn btn-outline-danger" Font-Size="Small"><i class="fa fa-times"></i> Clear Filter</asp:LinkButton>
@@ -30,14 +30,12 @@
                         Brand
                     </div>
                     <div class="panel-body">
-                        <p class="card-text">
                             <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" CssClass="radio" AutoPostBack="True" Font-Size="Small" Font-Overline="False" CellPadding="-1" CellSpacing="1">
                             </asp:RadioButtonList>
-                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-9 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
                             <div class="col-sm-3" style="text-align: center">
@@ -63,25 +61,21 @@
                             </div>
                             <div class="col-sm-3">
                                 <br />
-                                <br />
-                                <p class="card-text">
                                     <asp:Label CssClass="form-control-label" ID="lbl_FinalPrice" runat="server" Text="Label" Font-Bold="True">$2,699.00</asp:Label>
                                     <br />
                                     <br />
-                                    <asp:DropDownList ID="drpdwnlst_Quantity" runat="server" CssClass="form-control" Width="75">
+                                    <asp:DropDownList ID="drpdwnlst_Quantity" runat="server" CssClass="form-control" Width="100">
                                         <asp:ListItem>1</asp:ListItem>
                                         <asp:ListItem>2</asp:ListItem>
                                         <asp:ListItem>3</asp:ListItem>
                                         <asp:ListItem>4</asp:ListItem>
                                     </asp:DropDownList><br />
                                     <asp:LinkButton ID="lnkbtn_AddToCart" runat="server" CssClass="btn btn-outline-primary" Font-Size="Small"><i class="fa fa-shopping-cart"></i>  Add to Cart</asp:LinkButton>
-                                </p>
                             </div>
                         </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-
                         <asp:PlaceHolder ID="plchldr_Prod" runat="server"></asp:PlaceHolder>
                     </div>
                 </div>
