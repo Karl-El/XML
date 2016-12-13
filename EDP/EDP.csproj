@@ -107,6 +107,7 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DSManufacturer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="s.aspx.cs">
       <DependentUpon>s.aspx</DependentUpon>
