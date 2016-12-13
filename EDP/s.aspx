@@ -6,7 +6,7 @@
     <div class="container">
         <div class=" row">
             <div class="col-sm-3 col-xs-12">
-                <div class="panel panel-default">
+                <div class="panel panel-danger">
                     <div class="panel-body" style="text-align: center">
                         <asp:LinkButton ID="lnkbtn_ClearFilter" runat="server" CssClass="btn btn-outline-danger" Font-Size="Small"><i class="fa fa-times"></i> Clear Filter</asp:LinkButton>
                     </div>
@@ -16,7 +16,7 @@
                         View
                     </div>
                     <div class="panel-body">
-                        <asp:DropDownList ID="drpdwnlst_View" runat="server" CssClass="form-control" AutoPostBack="true" Font-Size="Small">
+                        <asp:DropDownList ID="drpdwnlst_View" runat="server" CssClass="form-control" AutoPostBack="true" Font-Size="Small"  OnSelectedIndexChanged="drpdwnlst_View_SelectedIndexChanged">
                             <asp:ListItem>5</asp:ListItem>
                             <asp:ListItem>10</asp:ListItem>
                             <asp:ListItem>25</asp:ListItem>
@@ -30,7 +30,7 @@
                         Brand
                     </div>
                     <div class="panel-body">
-                            <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" CssClass="radio" AutoPostBack="True" Font-Size="Small" Font-Overline="False" CellPadding="-1" CellSpacing="1">
+                            <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" CssClass="radio radio-info" AutoPostBack="True" Font-Size="Small" Font-Overline="False" CellPadding="-1" CellSpacing="1">
                             </asp:RadioButtonList>
                     </div>
                 </div>
