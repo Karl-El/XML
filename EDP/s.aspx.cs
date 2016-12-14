@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace EDP
 {
@@ -20,13 +21,12 @@ namespace EDP
         {
             q = Request.QueryString["q"];
             rdbtnlstDataSourceBrandsPageLoad();
+            ViewAllInfo();
             if (!IsPostBack)
             {
-                ViewAllInfo();
             }
+
         }
-
-
 
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -66,29 +66,68 @@ namespace EDP
             }
         }
 
+        protected void lstvw_Prodinfo_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.StartRowIndex, false);
+            ViewAllInfo();
+        }
+
         public void ViewAllInfo()
         {
-            DataTable dt_ProdInfo = new DataTable();
-            dt_ProdInfo.Columns.AddRange(new DataColumn[6]
-            { new DataColumn("ProdName", typeof(string)),
+            if (!IsPostBack)
+            {
+                DataTable dt_ProdInfo = new DataTable();
+                dt_ProdInfo.Columns.AddRange(new DataColumn[6]
+                { new DataColumn("ProdName", typeof(string)),
             new DataColumn("ProdManufact", typeof(string)),
             new DataColumn("ProdDesc", typeof(string)),
             new DataColumn("ProdFinPrice", typeof(string)),
             new DataColumn("ProdAvailDesc", typeof(string)),
             new DataColumn("ProdImgURl", typeof(string)),
-            });
-            string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "";
-            List<string> EDPs;
-            EDPs = SearchedEDP.EDPSearching(q, rows);
-            for (int i = 0; i < EDPs.Count; i++)
-            {
+                });
+                string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "";
+                List<string> EDPs;
+                EDPs = SearchedEDP.EDPSearching(q, rows);
+                for (int i = 0; i < EDPs.Count; i++)
+                {
+                    string URL = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + EDPs[i] + "&ignoreCatalog=true";
+                    XmlTextReader reader = new XmlTextReader(URL);
+                    reader.WhitespaceHandling = WhitespaceHandling.Significant;
+                    while (reader.Read())
+                    {
 
-                ProdInfo.ShowDetails(EDPs[i], name, manufact, desc, finalprice, availdesc, imageurl);
-                dt_ProdInfo.Rows.Add(name, manufact, desc, finalprice, availdesc, imageurl);
+                        if (reader.Name == "name")
+                        {
+                            name = reader.ReadElementString("name");
+                        }
+                        if (reader.Name == "manufacturer")
+                        {
+                            manufact = reader.ReadElementString("manufacturer");
+                        }
+                        if (reader.Name == "description")
+                        {
+                            desc = reader.ReadElementString("description");
+                        }
+                        if (reader.Name == "finalPrice")
+                        {
+                            finalprice = reader.ReadElementString("finalPrice");
+                        }
+                        if (reader.Name == "availabilityDescription")
+                        {
+                            availdesc = reader.ReadElementString("availabilityDescription");
+                        }
+                        if (reader.Name == "xlg")
+                        {
+                            imageurl = reader.ReadElementString("xlg");
+                        }
+                    }
+                    //ProdInfo.ShowDetails(EDPs[i], name, manufact, desc, finalprice, availdesc, imageurl);
+                    dt_ProdInfo.Rows.Add(name, manufact, desc, finalprice, availdesc, imageurl);
+                }
+
+                lstvw_Prodinfo.DataSource = dt_ProdInfo;
+                lstvw_Prodinfo.DataBind();
             }
-
-            rptrProdInfo.DataSource = dt_ProdInfo;
-            rptrProdInfo.DataBind();
         }
     }
 }

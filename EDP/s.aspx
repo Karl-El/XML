@@ -30,7 +30,7 @@
                         Brand
                     </div>
                     <div class="panel-body">
-                        <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="200">
+                        <asp:Panel ID="pnl_rdBrand" runat="server" ScrollBars="Auto" Height="150">
                             <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" CssClass="radio radio-info" AutoPostBack="True" Font-Size="Small" Font-Overline="False" CellPadding="-1" CellSpacing="1">
                             </asp:RadioButtonList>
                         </asp:Panel>
@@ -78,8 +78,7 @@
                 </div>--%>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <asp:DataPager ID="_dtdpgrProdInfo" runat="server" PagedControlID="lstvwProdinfo"></asp:DataPager>
-                        <asp:ListView ID="lstvwProdinfo" runat="server">
+                        <asp:ListView ID="lstvw_Prodinfo" runat="server" OnPagePropertiesChanging="lstvw_Prodinfo_PagePropertiesChanging">
                             <ItemTemplate>
                                 <div class="row">
                                     <div class="col-sm-3" style="text-align: center">
@@ -105,7 +104,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <br />
-                                        <asp:Label CssClass="form-control-label" ID="lbl_FinalPrice" runat="server" Text='<%# Eval("ProdFinPrice")%>' Font-Bold="True">$2,699.00</asp:Label>
+                                        <asp:Label CssClass="form-control-label" ID="lbl_FinalPrice" runat="server" Text='$ <%# Eval("ProdFinPrice")%>' Font-Bold="True">$2,699.00</asp:Label>
                                         <br />
                                         <br />
                                         <asp:DropDownList ID="drpdwnlst_Quantity" runat="server" CssClass="form-control" Width="100">
@@ -117,11 +116,20 @@
                                         <asp:LinkButton ID="lnkbtn_AddToCart" runat="server" CssClass="btn btn-outline-primary" Font-Size="Small"><i class="fa fa-shopping-cart"></i>  Add to Cart</asp:LinkButton>
                                     </div>
                                 </div>
+                                <hr />
                             </ItemTemplate>
                         </asp:ListView>
                         <asp:Repeater ID="rptrProdInfo" runat="server">
                         </asp:Repeater>
                         <asp:PlaceHolder ID="plchldr_Prod" runat="server"></asp:PlaceHolder>
+                        <br />
+                        <asp:DataPager ID="dtdpgr_ProdInfo" runat="server" PageSize="3" PagedControlID="lstvw_Prodinfo">
+                            <Fields>
+                                <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-info btn-sm" />
+                                <asp:NumericPagerField NumericButtonCssClass="label label-success" CurrentPageLabelCssClass="badge" />
+                                <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="True" ShowPreviousPageButton="False" ButtonCssClass="btn btn-info btn-sm" />
+                            </Fields>
+                        </asp:DataPager>
                     </div>
                 </div>
             </div>

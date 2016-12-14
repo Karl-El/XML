@@ -27,6 +27,7 @@ namespace EDP
                 }
             }
             EDP = EDP.Distinct().ToList();
+            EDP = EDP.OrderBy(i => i).ToList();
             return (EDP);
         }
     }

@@ -31,13 +31,13 @@ namespace EDP {
         protected global::System.Web.UI.WebControls.DropDownList drpdwnlst_View;
         
         /// <summary>
-        /// Panel1 control.
+        /// pnl_rdBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel pnl_rdBrand;
         
         /// <summary>
         /// rdbtnlst_Brand control.
@@ -49,22 +49,13 @@ namespace EDP {
         protected global::System.Web.UI.WebControls.RadioButtonList rdbtnlst_Brand;
         
         /// <summary>
-        /// _dtdpgrProdInfo control.
+        /// lstvw_Prodinfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataPager _dtdpgrProdInfo;
-        
-        /// <summary>
-        /// lstvwProdinfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lstvwProdinfo;
+        protected global::System.Web.UI.WebControls.ListView lstvw_Prodinfo;
         
         /// <summary>
         /// rptrProdInfo control.
@@ -83,5 +74,14 @@ namespace EDP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder plchldr_Prod;
+        
+        /// <summary>
+        /// dtdpgr_ProdInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataPager dtdpgr_ProdInfo;
     }
 }
