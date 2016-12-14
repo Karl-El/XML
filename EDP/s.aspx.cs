@@ -32,6 +32,7 @@ namespace EDP
         {
             rows = drpdwnlst_View.SelectedValue;
             rdbtnlstDataSourceBrands();
+            ViewAllInfo();
         }
 
         public void rdbtnlstDataSourceBrands()
@@ -74,7 +75,7 @@ namespace EDP
 
         public void ViewAllInfo()
         {
-            if (!IsPostBack)
+            if (IsPostBack)
             {
                 DataTable dt_ProdInfo = new DataTable();
                 dt_ProdInfo.Columns.AddRange(new DataColumn[6]
@@ -122,12 +123,13 @@ namespace EDP
                         }
                     }
                     //ProdInfo.ShowDetails(EDPs[i], name, manufact, desc, finalprice, availdesc, imageurl);
-                    dt_ProdInfo.Rows.Add(name, manufact, desc, finalprice, availdesc, imageurl);
+                    dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
                 }
 
                 lstvw_Prodinfo.DataSource = dt_ProdInfo;
                 lstvw_Prodinfo.DataBind();
             }
         }
+
     }
 }
