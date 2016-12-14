@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -19,7 +20,10 @@ namespace EDP
         {
             q = Request.QueryString["q"];
             rdbtnlstDataSourceBrandsPageLoad();
-            ViewAllInfo();
+            if (!IsPostBack)
+            {
+                ViewAllInfo();
+            }
         }
 
 
@@ -62,49 +66,29 @@ namespace EDP
             }
         }
 
-        public class InfoPerProd
-        {
-            public string ProdName { get; set; }
-            public string ProdManufact { get; set; }
-            public string ProdDesc { get; set; }
-            public string ProdFinPrice { get; set; }
-            public string ProdAvailDesc { get; set; }
-            public string ProdImgURl { get; set; }
-        }
-        //private void BindItemsInCart(List<InfoPerProd> ListOfSelectedProducts)
-        //{
-        //    // The the LIST as the DataSource
-        //    this.rptrProdInfo.DataSource = ListOfSelectedProducts;
-
-        //    // Then bind the repeater
-        //    // The public properties become the columns of your repeater
-        //    this.rptrProdInfo.DataBind();
-        //}
         public void ViewAllInfo()
         {
-            List<InfoPerProd> DataItems = new List<InfoPerProd>();
-            var CD = new InfoPerProd();
-            
+            DataTable dt_ProdInfo = new DataTable();
+            dt_ProdInfo.Columns.AddRange(new DataColumn[6]
+            { new DataColumn("ProdName", typeof(string)),
+            new DataColumn("ProdManufact", typeof(string)),
+            new DataColumn("ProdDesc", typeof(string)),
+            new DataColumn("ProdFinPrice", typeof(string)),
+            new DataColumn("ProdAvailDesc", typeof(string)),
+            new DataColumn("ProdImgURl", typeof(string)),
+            });
             string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "";
             List<string> EDPs;
             EDPs = SearchedEDP.EDPSearching(q, rows);
             for (int i = 0; i < EDPs.Count; i++)
             {
+
                 ProdInfo.ShowDetails(EDPs[i], name, manufact, desc, finalprice, availdesc, imageurl);
-                CD.ProdName = name;
-                CD.ProdManufact = manufact;
-                CD.ProdDesc = desc;
-                CD.ProdFinPrice = finalprice;
-                CD.ProdAvailDesc = availdesc;
-                CD.ProdImgURl = imageurl;
-                DataItems.Add(CD);
-                //Response.Write(name + manufact + desc + finalprice + availdesc + imageurl);
+                dt_ProdInfo.Rows.Add(name, manufact, desc, finalprice, availdesc, imageurl);
             }
 
-            rptrProdInfo.DataSource = DataItems;
+            rptrProdInfo.DataSource = dt_ProdInfo;
             rptrProdInfo.DataBind();
-            //Information = Detailed.ShowDetails(EDPs);
-            //plchldr_Prod.Controls.Add(new LiteralControl(Information));
         }
     }
 }
