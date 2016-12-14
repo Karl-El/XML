@@ -73,6 +73,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Site.Master" />
+    <Content Include="s.aspx STABLE DESIGN" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -40,85 +40,13 @@ namespace EDP {
         protected global::System.Web.UI.WebControls.RadioButtonList rdbtnlst_Brand;
         
         /// <summary>
-        /// img_Prod control.
+        /// rptrProdInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img_Prod;
-        
-        /// <summary>
-        /// chkbx_Compare control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkbx_Compare;
-        
-        /// <summary>
-        /// lbl_ProdName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ProdName;
-        
-        /// <summary>
-        /// lbl_ProdDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ProdDesc;
-        
-        /// <summary>
-        /// lbl_StockDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_StockDesc;
-        
-        /// <summary>
-        /// lbl_Manufact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Manufact;
-        
-        /// <summary>
-        /// lbl_FinalPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_FinalPrice;
-        
-        /// <summary>
-        /// drpdwnlst_Quantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpdwnlst_Quantity;
-        
-        /// <summary>
-        /// lnkbtn_AddToCart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtn_AddToCart;
+        protected global::System.Web.UI.WebControls.Repeater rptrProdInfo;
         
         /// <summary>
         /// plchldr_Prod control.
