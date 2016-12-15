@@ -41,28 +41,10 @@ namespace EDP
             List<string> Brands;
             EDPs = SearchedEDP.EDPSearching(q, rows);
             Brands = DSManufacturer.ListingEDPbyManufact(EDPs);
-            //if (IsPostBack)
-            //{
             rdbtnlst_Brand.Items.Clear();
             for (int i = 0; i < Brands.Count; i++)
             {
                 rdbtnlst_Brand.Items.Add(new ListItem(Brands[i]));
-            }
-            //}
-        }
-
-        public void rdbtnlstDataSourceBrandsPageLoad()
-        {
-            List<string> Brands;
-            EDPs = SearchedEDP.EDPSearching(q, rows);
-            Brands = DSManufacturer.ListingEDPbyManufact(EDPs);
-            if (!IsPostBack)
-            {
-                rdbtnlst_Brand.Items.Clear();
-                for (int i = 0; i < Brands.Count; i++)
-                {
-                    rdbtnlst_Brand.Items.Add(new ListItem(Brands[i]));
-                }
             }
         }
 
@@ -92,26 +74,11 @@ namespace EDP
 
         public void ViewAllInfo()
         {
-            //if (IsPostBack)
-            //{
             EDPs = SearchedEDP.EDPSearching(q, rows);
             DataTable dt_Info = new DataTable();
             dt_Info = ProdInfo.ShowDetails(EDPs);
             lstvw_Prodinfo.DataSource = dt_Info;
             lstvw_Prodinfo.DataBind();
-            //}
-        }
-
-        public void ViewAllInfoPageLoad()
-        {
-            if (!IsPostBack)
-            {
-                EDPs = SearchedEDP.EDPSearching(q, rows);
-                DataTable dt_Info = new DataTable();
-                dt_Info = ProdInfo.ShowDetails(EDPs);
-                lstvw_Prodinfo.DataSource = dt_Info;
-                lstvw_Prodinfo.DataBind();
-            }
         }
     }
 }
