@@ -21,9 +21,9 @@ namespace EDP
         {
             q = Request.QueryString["q"];
             rdbtnlstDataSourceBrandsPageLoad();
-            ViewAllInfo();
-            if (!IsPostBack)
+            if (IsPostBack)
             {
+                ViewAllInfo();
             }
 
         }
@@ -69,7 +69,7 @@ namespace EDP
 
         protected void lstvw_Prodinfo_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
-            dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.StartRowIndex, false);
+            //dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.StartRowIndex, false);
             ViewAllInfo();
         }
 
@@ -79,12 +79,8 @@ namespace EDP
             {
                 DataTable dt_ProdInfo = new DataTable();
                 dt_ProdInfo.Columns.AddRange(new DataColumn[6]
-                { new DataColumn("ProdName", typeof(string)),
-            new DataColumn("ProdManufact", typeof(string)),
-            new DataColumn("ProdDesc", typeof(string)),
-            new DataColumn("ProdFinPrice", typeof(string)),
-            new DataColumn("ProdAvailDesc", typeof(string)),
-            new DataColumn("ProdImgURl", typeof(string)),
+                { new DataColumn("ProdName", typeof(string)),new DataColumn("ProdManufact", typeof(string)),new DataColumn("ProdDesc", typeof(string)),
+            new DataColumn("ProdFinPrice", typeof(string)),new DataColumn("ProdAvailDesc", typeof(string)),new DataColumn("ProdImgURl", typeof(string)),
                 });
                 string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "";
                 List<string> EDPs;
