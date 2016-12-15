@@ -13,6 +13,7 @@ namespace EDP
     public partial class s : System.Web.UI.Page
     {
         string q = "", rows = "5";
+        List<string> EDPs;
 
         SearchedEDP SearchedEDP = new SearchedEDP();
         DSManufacturer DSManufacturer = new DSManufacturer();
@@ -21,8 +22,12 @@ namespace EDP
         protected void Page_Load(object sender, EventArgs e)
         {
             q = Request.QueryString["q"];
+            if (!IsPostBack)
+            {
+                EDPs = SearchedEDP.EDPSearching(q, rows);
+                ViewAllInfo();
+            }
             rdbtnlstDataSourceBrandsPageLoad();
-            ViewAllInfoPageLoad();
         }
 
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
@@ -35,8 +40,6 @@ namespace EDP
         public void rdbtnlstDataSourceBrands()
         {
             List<string> Brands;
-            List<string> EDPs;
-            EDPs = SearchedEDP.EDPSearching(q, rows);
             Brands = DSManufacturer.ListingEDPbyManufact(EDPs);
             if (IsPostBack)
             {
@@ -51,8 +54,6 @@ namespace EDP
         public void rdbtnlstDataSourceBrandsPageLoad()
         {
             List<string> Brands;
-            List<string> EDPs;
-            EDPs = SearchedEDP.EDPSearching(q, rows);
             Brands = DSManufacturer.ListingEDPbyManufact(EDPs);
             if (!IsPostBack)
             {
@@ -92,65 +93,13 @@ namespace EDP
         {
             if (IsPostBack)
             {
-                
-                lstvw_Prodinfo.DataSource;
+                DataTable dt_Info = new DataTable();
+                dt_Info = ProdInfo.ShowDetails(EDPs);
+                lstvw_Prodinfo.DataSource =dt_Info;
                 lstvw_Prodinfo.DataBind();
             }
         }
-
-        //public void ViewAllInfoPageLoad()
-        //{
-        //    if (!IsPostBack)
-        //    {
-        //        DataTable dt_ProdInfo = new DataTable();
-        //        dt_ProdInfo.Columns.AddRange(new DataColumn[6]
-        //        { new DataColumn("ProdName", typeof(string)),new DataColumn("ProdManufact", typeof(string)),new DataColumn("ProdDesc", typeof(string)),
-        //    new DataColumn("ProdFinPrice", typeof(string)),new DataColumn("ProdAvailDesc", typeof(string)),new DataColumn("ProdImgURl", typeof(string)),
-        //        });
-        //        string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "";
-        //        List<string> EDPs;
-        //        EDPs = SearchedEDP.EDPSearching(q, rows);
-        //        for (int i = 0; i < EDPs.Count; i++)
-        //        {
-        //            string URL = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + EDPs[i] + "&ignoreCatalog=true";
-        //            XmlTextReader reader = new XmlTextReader(URL);
-        //            reader.WhitespaceHandling = WhitespaceHandling.Significant;
-        //            while (reader.Read())
-        //            {
-
-        //                if (reader.Name == "name")
-        //                {
-        //                    name = reader.ReadElementString("name");
-        //                }
-        //                if (reader.Name == "manufacturer")
-        //                {
-        //                    manufact = reader.ReadElementString("manufacturer");
-        //                }
-        //                if (reader.Name == "description")
-        //                {
-        //                    desc = reader.ReadElementString("description");
-        //                }
-        //                if (reader.Name == "finalPrice")
-        //                {
-        //                    finalprice = reader.ReadElementString("finalPrice");
-        //                }
-        //                if (reader.Name == "availabilityDescription")
-        //                {
-        //                    availdesc = reader.ReadElementString("availabilityDescription");
-        //                }
-        //                if (reader.Name == "xlg")
-        //                {
-        //                    imageurl = reader.ReadElementString("xlg");
-        //                }
-        //            }
-        //            //ProdInfo.ShowDetails(EDPs[i], name, manufact, desc, finalprice, availdesc, imageurl);
-        //            dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
-        //        }
-
-        //        lstvw_Prodinfo.DataSource = dt_ProdInfo;
-        //        lstvw_Prodinfo.DataBind();
-        //    }
-        //}
+        
 
     }
 }
