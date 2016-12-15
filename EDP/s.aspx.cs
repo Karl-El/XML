@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -75,7 +76,20 @@ namespace EDP
 
         protected void lstvw_Prodinfo_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
+            Label lbl_StockDes;
+            LinkButton lnkbtn_AddToCart;
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                lbl_StockDes = (Label)e.Item.FindControl("lbl_StockDes");
+                lnkbtn_AddToCart = (LinkButton)e.Item.FindControl("lnkbtn_AddToCart");
 
+                if (lbl_StockDes.Text == "Temporarily out of stock. Order today and we'll deliver when available")
+                {
+                    lbl_StockDes.ForeColor = Color.Red;
+                    lnkbtn_AddToCart.Text = "Pre-Order Now";
+                }
+
+            }
         }
 
         public void ViewAllInfo()

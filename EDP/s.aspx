@@ -49,21 +49,21 @@
                         </div>
                         <div class="col-sm-6">
                             <h5>
-                                <asp:Label CssClass="form-control-label" ID="lbl_ProdName" runat="server" Text="Label" Font-Bold="true">Microsoft Surface Book - Tablet - with detachable keyboard - Core i7 6600U / 2.6 GHz - Win 10 Pro 64-bit - 16 GB RAM - 512 GB SSD - 13.5" touchscreen 3000 x 2000 - GF 940M</asp:Label>
+                                <asp:Label CssClass="control-label" ID="lbl_ProdName" runat="server" Text="Label" Font-Bold="true">Microsoft Surface Book - Tablet - with detachable keyboard - Core i7 6600U / 2.6 GHz - Win 10 Pro 64-bit - 16 GB RAM - 512 GB SSD - 13.5" touchscreen 3000 x 2000 - GF 940M</asp:Label>
                             </h5>
-                            <asp:Label CssClass="form-control-label" ID="lbl_ProdDesc" runat="server" Text="Label" Font-Size="Small">Microsoft Surface Book - Tablet - with detachable keyboard - Core i7 6600U / 2.6 GHz - Win 10 Pro 64-bit - 16 GB RAM - 512 GB SSD - 13.5" touchscreen 3000 x 2000 - GF 940M</asp:Label>
+                            <asp:Label CssClass="control-label" ID="lbl_ProdDesc" runat="server" Text="Label" Font-Size="Small">Microsoft Surface Book - Tablet - with detachable keyboard - Core i7 6600U / 2.6 GHz - Win 10 Pro 64-bit - 16 GB RAM - 512 GB SSD - 13.5" touchscreen 3000 x 2000 - GF 940M</asp:Label>
                             <p>
                                 <label style="font-size: small">Availability:</label>
-                                <asp:Label CssClass="form-control-label" ID="lbl_StockDesc" runat="server" Text="Label" Font-Size="Small" ForeColor="#009900">In stock. Usually ships next business day.</asp:Label>
+                                <asp:Label CssClass="control-label" ID="lbl_StockDesc" runat="server" Text="Label" Font-Size="Small" ForeColor="#009900">In stock. Usually ships next business day.</asp:Label>
                             </p>
                             <p>
                                 <label style="font-size: small">Manufacturer:</label>
-                                <asp:Label CssClass="form-control-label" ID="lbl_Manufact" runat="server" Text="Label" Font-Size="Small">Dell</asp:Label>
+                                <asp:Label CssClass="control-label" ID="lbl_Manufact" runat="server" Text="Label" Font-Size="Small">Dell</asp:Label>
                             </p>
                         </div>
                         <div class="col-sm-3">
                             <br />
-                            <asp:Label CssClass="form-control-label" ID="lbl_FinalPrice" runat="server" Text="Label" Font-Bold="True">$2,699.00</asp:Label>
+                            <asp:Label CssClass="control-label" ID="lbl_FinalPrice" runat="server" Text="Label" Font-Bold="True">$2,699.00</asp:Label>
                             <br />
                             <br />
                             <asp:DropDownList ID="drpdwnlst_Quantity" runat="server" CssClass="form-control" Width="100">
@@ -90,21 +90,21 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <h5>
-                                            <asp:Label CssClass="form-control-label" ID="lbl_ProdName" runat="server" Text='<%# Eval("ProdName")%>' Font-Bold="true"></asp:Label>
+                                            <asp:Label CssClass="control-label" ID="lbl_ProdName" runat="server" Text='<%# Eval("ProdName")%>' Font-Bold="true"></asp:Label>
                                         </h5>
-                                        <asp:Label CssClass="form-control-label" ID="lbl_ProdDesc" runat="server" Text='<%# Eval("ProdDesc") %>' Font-Size="Small"></asp:Label>
+                                        <asp:Label CssClass="control-label" ID="lbl_ProdDesc" runat="server" Text='<%# Eval("ProdDesc") %>' Font-Size="Small"></asp:Label>
                                         <p>
                                             <label style="font-size: small">Availability:</label>
-                                            <asp:Label CssClass="form-control-label" ID="lbl_StockDesc" runat="server" Text='<%# Eval("ProdAvailDesc")%>' Font-Size="Small" ForeColor="#009900"></asp:Label>
+                                            <asp:Label CssClass="control-label" ID="lbl_StockDesc" runat="server" Text='<%# Eval("ProdAvailDesc")%>' Font-Size="Small" ForeColor="#009900"></asp:Label>
                                         </p>
                                         <p>
                                             <label style="font-size: small">Manufacturer:</label>
-                                            <asp:Label CssClass="form-control-label" ID="lbl_Manufact" runat="server" Text='<%# Eval("ProdManufact")%>' Font-Size="Small"></asp:Label>
+                                            <asp:Label CssClass="control-label" ID="lbl_Manufact" runat="server" Text='<%# Eval("ProdManufact")%>' Font-Size="Small"></asp:Label>
                                         </p>
                                     </div>
                                     <div class="col-sm-3">
                                         <br />
-                                        <asp:Label CssClass="form-control-label" ID="lbl_FinalPrice" runat="server" Text='<%# Eval("ProdFinPrice")%>' Font-Bold="True"></asp:Label>
+                                        <asp:Label CssClass="control-label" ID="lbl_FinalPrice" runat="server" Text='<%# Eval("ProdFinPrice")%>' Font-Bold="True"></asp:Label>
                                         <br />
                                         <br />
                                         <asp:DropDownList ID="drpdwnlst_Quantity" runat="server" CssClass="form-control" Width="100">
