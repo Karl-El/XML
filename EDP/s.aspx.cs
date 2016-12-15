@@ -22,11 +22,7 @@ namespace EDP
         {
             q = Request.QueryString["q"];
             rdbtnlstDataSourceBrandsPageLoad();
-            if (IsPostBack)
-            {
-                ViewAllInfo();
-            }
-
+            ViewAllInfoPageLoad();
         }
 
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
@@ -76,75 +72,85 @@ namespace EDP
 
         protected void lstvw_Prodinfo_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
-            Label lbl_StockDes;
-            LinkButton lnkbtn_AddToCart;
-            if (e.Item.ItemType == ListViewItemType.DataItem)
-            {
-                lbl_StockDes = (Label)e.Item.FindControl("lbl_StockDes");
-                lnkbtn_AddToCart = (LinkButton)e.Item.FindControl("lnkbtn_AddToCart");
+            //Label lbl_StockDes;
+            //LinkButton lnkbtn_AddToCart;
+            //if (e.Item.ItemType == ListViewItemType.DataItem)
+            //{
+            //    lbl_StockDes = (Label)e.Item.FindControl("lbl_StockDes");
+            //    lnkbtn_AddToCart = (LinkButton)e.Item.FindControl("lnkbtn_AddToCart");
 
-                if (lbl_StockDes.Text == "Temporarily out of stock. Order today and we'll deliver when available")
-                {
-                    lbl_StockDes.ForeColor = Color.Red;
-                    lnkbtn_AddToCart.Text = "Pre-Order Now";
-                }
+            //    if (lbl_StockDes.Text == "Temporarily out of stock. Order today and we'll deliver when available")
+            //    {
+            //        lbl_StockDes.ForeColor = Color.Red;
+            //        lnkbtn_AddToCart.Text = "Pre-Order Now";
+            //    }
 
-            }
+            //}
         }
 
         public void ViewAllInfo()
         {
             if (IsPostBack)
             {
-                DataTable dt_ProdInfo = new DataTable();
-                dt_ProdInfo.Columns.AddRange(new DataColumn[6]
-                { new DataColumn("ProdName", typeof(string)),new DataColumn("ProdManufact", typeof(string)),new DataColumn("ProdDesc", typeof(string)),
-            new DataColumn("ProdFinPrice", typeof(string)),new DataColumn("ProdAvailDesc", typeof(string)),new DataColumn("ProdImgURl", typeof(string)),
-                });
-                string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "";
-                List<string> EDPs;
-                EDPs = SearchedEDP.EDPSearching(q, rows);
-                for (int i = 0; i < EDPs.Count; i++)
-                {
-                    string URL = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + EDPs[i] + "&ignoreCatalog=true";
-                    XmlTextReader reader = new XmlTextReader(URL);
-                    reader.WhitespaceHandling = WhitespaceHandling.Significant;
-                    while (reader.Read())
-                    {
-
-                        if (reader.Name == "name")
-                        {
-                            name = reader.ReadElementString("name");
-                        }
-                        if (reader.Name == "manufacturer")
-                        {
-                            manufact = reader.ReadElementString("manufacturer");
-                        }
-                        if (reader.Name == "description")
-                        {
-                            desc = reader.ReadElementString("description");
-                        }
-                        if (reader.Name == "finalPrice")
-                        {
-                            finalprice = reader.ReadElementString("finalPrice");
-                        }
-                        if (reader.Name == "availabilityDescription")
-                        {
-                            availdesc = reader.ReadElementString("availabilityDescription");
-                        }
-                        if (reader.Name == "xlg")
-                        {
-                            imageurl = reader.ReadElementString("xlg");
-                        }
-                    }
-                    //ProdInfo.ShowDetails(EDPs[i], name, manufact, desc, finalprice, availdesc, imageurl);
-                    dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
-                }
-
-                lstvw_Prodinfo.DataSource = dt_ProdInfo;
+                
+                lstvw_Prodinfo.DataSource;
                 lstvw_Prodinfo.DataBind();
             }
         }
+
+        //public void ViewAllInfoPageLoad()
+        //{
+        //    if (!IsPostBack)
+        //    {
+        //        DataTable dt_ProdInfo = new DataTable();
+        //        dt_ProdInfo.Columns.AddRange(new DataColumn[6]
+        //        { new DataColumn("ProdName", typeof(string)),new DataColumn("ProdManufact", typeof(string)),new DataColumn("ProdDesc", typeof(string)),
+        //    new DataColumn("ProdFinPrice", typeof(string)),new DataColumn("ProdAvailDesc", typeof(string)),new DataColumn("ProdImgURl", typeof(string)),
+        //        });
+        //        string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "";
+        //        List<string> EDPs;
+        //        EDPs = SearchedEDP.EDPSearching(q, rows);
+        //        for (int i = 0; i < EDPs.Count; i++)
+        //        {
+        //            string URL = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + EDPs[i] + "&ignoreCatalog=true";
+        //            XmlTextReader reader = new XmlTextReader(URL);
+        //            reader.WhitespaceHandling = WhitespaceHandling.Significant;
+        //            while (reader.Read())
+        //            {
+
+        //                if (reader.Name == "name")
+        //                {
+        //                    name = reader.ReadElementString("name");
+        //                }
+        //                if (reader.Name == "manufacturer")
+        //                {
+        //                    manufact = reader.ReadElementString("manufacturer");
+        //                }
+        //                if (reader.Name == "description")
+        //                {
+        //                    desc = reader.ReadElementString("description");
+        //                }
+        //                if (reader.Name == "finalPrice")
+        //                {
+        //                    finalprice = reader.ReadElementString("finalPrice");
+        //                }
+        //                if (reader.Name == "availabilityDescription")
+        //                {
+        //                    availdesc = reader.ReadElementString("availabilityDescription");
+        //                }
+        //                if (reader.Name == "xlg")
+        //                {
+        //                    imageurl = reader.ReadElementString("xlg");
+        //                }
+        //            }
+        //            //ProdInfo.ShowDetails(EDPs[i], name, manufact, desc, finalprice, availdesc, imageurl);
+        //            dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
+        //        }
+
+        //        lstvw_Prodinfo.DataSource = dt_ProdInfo;
+        //        lstvw_Prodinfo.DataBind();
+        //    }
+        //}
 
     }
 }
