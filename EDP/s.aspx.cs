@@ -50,7 +50,7 @@ namespace EDP
 
         protected void lstvw_Prodinfo_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
-            //dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.StartRowIndex, false);
+            dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.StartRowIndex, false);
             ViewAllInfo();
         }
 
@@ -58,18 +58,18 @@ namespace EDP
         {
             Label lbl_StockDes;
             LinkButton lnkbtn_AddToCart;
-            //if (e.Item.ItemType == ListViewItemType.DataItem)
-            //{
-            //    lbl_StockDes = (Label)e.Item.FindControl("lbl_StockDes");
-            //    lnkbtn_AddToCart = (LinkButton)e.Item.FindControl("lnkbtn_AddToCart");
+            /*if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                lbl_StockDes = (Label)e.Item.FindControl("lbl_StockDes");
+                lnkbtn_AddToCart = (LinkButton)e.Item.FindControl("lnkbtn_AddToCart");
 
-            //    if (lbl_StockDes.Text == "Temporarily out of stock. Order today and we'll deliver when available")
-            //    {
-            //        lbl_StockDes.ForeColor = Color.Red;
-            //        lnkbtn_AddToCart.Text = "Pre-Order Now";
-            //    }
+                if (lbl_StockDes.Text == "Temporarily out of stock. Order today and we'll deliver when available")
+                {
+                    lbl_StockDes.ForeColor = Color.Red;
+                    lnkbtn_AddToCart.Text = "Pre-Order Now";
+                }
 
-            //}
+            }*/
         }
 
         public void ViewAllInfo()
