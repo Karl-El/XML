@@ -125,9 +125,9 @@
                         <br />
                         <asp:DataPager ID="dtdpgr_ProdInfo" runat="server" PageSize="5" PagedControlID="lstvw_Prodinfo">
                             <Fields>
-                                <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-info btn-sm" />
-                                <asp:NumericPagerField/>
-                                <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="True" ShowPreviousPageButton="False" ButtonCssClass="btn btn-info btn-sm" />
+                                <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-outline-success" />
+                                <asp:NumericPagerField ButtonType="Link" CurrentPageLabelCssClass="label label-info" NumericButtonCssClass="badge label-success" />
+                                <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True" ShowNextPageButton="True" ShowPreviousPageButton="False" ButtonCssClass="btn btn-outline-success" />
                             </Fields>
                         </asp:DataPager>
                     </div>
