@@ -73,6 +73,11 @@ namespace EDP
             ViewAllInfo();
         }
 
+        protected void lstvw_Prodinfo_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+
+        }
+
         public void ViewAllInfo()
         {
             if (IsPostBack)
