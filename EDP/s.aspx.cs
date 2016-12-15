@@ -24,7 +24,6 @@ namespace EDP
             q = Request.QueryString["q"];
             if (!IsPostBack)
             {
-                EDPs = SearchedEDP.EDPSearching(q, rows);
                 ViewAllInfo();
             }
             rdbtnlstDataSourceBrandsPageLoad();
@@ -40,6 +39,7 @@ namespace EDP
         public void rdbtnlstDataSourceBrands()
         {
             List<string> Brands;
+            EDPs = SearchedEDP.EDPSearching(q, rows);
             Brands = DSManufacturer.ListingEDPbyManufact(EDPs);
             if (IsPostBack)
             {
@@ -54,6 +54,7 @@ namespace EDP
         public void rdbtnlstDataSourceBrandsPageLoad()
         {
             List<string> Brands;
+            EDPs = SearchedEDP.EDPSearching(q, rows);
             Brands = DSManufacturer.ListingEDPbyManufact(EDPs);
             if (!IsPostBack)
             {
@@ -73,8 +74,8 @@ namespace EDP
 
         protected void lstvw_Prodinfo_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
-            //Label lbl_StockDes;
-            //LinkButton lnkbtn_AddToCart;
+            Label lbl_StockDes;
+            LinkButton lnkbtn_AddToCart;
             //if (e.Item.ItemType == ListViewItemType.DataItem)
             //{
             //    lbl_StockDes = (Label)e.Item.FindControl("lbl_StockDes");
@@ -93,6 +94,7 @@ namespace EDP
         {
             if (IsPostBack)
             {
+                EDPs = SearchedEDP.EDPSearching(q, rows);
                 DataTable dt_Info = new DataTable();
                 dt_Info = ProdInfo.ShowDetails(EDPs);
                 lstvw_Prodinfo.DataSource =dt_Info;
