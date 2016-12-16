@@ -24,7 +24,7 @@ namespace EDP
             q = Request.QueryString["q"];
             if (!IsPostBack)
             {
-                //ViewAllInfo();
+                ViewAllInfo();
                 rdbtnlstDataSourceBrands();
             }
         }
@@ -50,7 +50,7 @@ namespace EDP
 
         protected void lstvw_Prodinfo_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
-            dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            //dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
             ViewAllInfo();
         }
 
