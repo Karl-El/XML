@@ -10,11 +10,16 @@ namespace EDP
     public partial class TESTINGPAGE : System.Web.UI.Page
     {
         SearchedEDP SearchedEDP = new SearchedEDP();
-        string Q = "laptop", ROWS = "5";
+        DSManufacturer DSManufacturer = new DSManufacturer();
+
+        string Q = "laptop", ROWS = "200";
         protected void Page_Load(object sender, EventArgs e)
         {
             string EDP = SearchedEDP.EDPinString(Q, ROWS);
-            Response.Write(EDP);
+            List<string> Brands = new List<string>();
+            Brands = DSManufacturer.EDPListByManufact(EDP);
+            string EDPString = string.Join("<br>", Brands);
+            Response.Write(EDP +"<br>" + EDPString);
         }
     }
 }

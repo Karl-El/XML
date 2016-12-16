@@ -12,7 +12,7 @@ namespace EDP
 {
     public partial class s : System.Web.UI.Page
     {
-        string q = "", rows = "5";
+        string q = "", rows = "5", EDPinString = "";
         List<string> EDPs;
 
         SearchedEDP SearchedEDP = new SearchedEDP();
@@ -24,7 +24,7 @@ namespace EDP
             q = Request.QueryString["q"];
             if (!IsPostBack)
             {
-                ViewAllInfo();
+                //ViewAllInfo();
                 rdbtnlstDataSourceBrands();
             }
         }
@@ -39,8 +39,8 @@ namespace EDP
         public void rdbtnlstDataSourceBrands()
         {
             List<string> Brands;
-            EDPs = SearchedEDP.EDPSearching(q, rows);
-            Brands = DSManufacturer.ListingEDPbyManufact(EDPs);
+            EDPinString = SearchedEDP.EDPinString(q, rows);
+            Brands = DSManufacturer.EDPListByManufact(EDPinString);
             rdbtnlst_Brand.Items.Clear();
             for (int i = 0; i < Brands.Count; i++)
             {
@@ -74,9 +74,9 @@ namespace EDP
 
         public void ViewAllInfo()
         {
-            EDPs = SearchedEDP.EDPSearching(q, rows);
+            EDPinString = SearchedEDP.EDPinString(q, rows);
             DataTable dt_Info = new DataTable();
-            dt_Info = ProdInfo.ShowDetails(EDPs);
+            dt_Info = ProdInfo.ShowInfo(EDPinString);
             lstvw_Prodinfo.DataSource = dt_Info;
             lstvw_Prodinfo.DataBind();
         }
