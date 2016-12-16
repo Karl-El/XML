@@ -50,7 +50,7 @@ namespace EDP
 
         protected void lstvw_Prodinfo_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
-            dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.StartRowIndex, false);
+            dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
             ViewAllInfo();
         }
 
