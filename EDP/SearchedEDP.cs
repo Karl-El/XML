@@ -8,7 +8,6 @@ namespace EDP
 {
     public class SearchedEDP
     {
-        public static string NoOfResult = "";
         public List<string> EDPSearching(string q, string rows)
         {
             List<string> EDP = new List<string>();
@@ -22,16 +21,17 @@ namespace EDP
                     if (reader.GetAttribute("name") == "EDP")
                     {
                         string xmltext_EDP = reader.ReadElementString("int");
-                        //NoOfResult 
                         EDP.Add(xmltext_EDP);
                     }
                 }
             }
             return (EDP);
         }
-        public string GetNoResult()
+
+        public string EDPinString(string q, string row)
         {
-            return NoOfResult;
+            string StringedEDP = "";
+            return (StringedEDP);
         }
     }
 }
