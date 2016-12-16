@@ -30,7 +30,8 @@ namespace EDP
 
         public string EDPinString(string q, string rows)
         {
-            string[] StringedEDP = new string[] { }; List<string> EDP = new List<string>();
+            string[] StringedEDP = new string[] { };
+            List<string> EDP = new List<string>();
             EDP.Clear();
             string URL = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + q + "&fl=EDP&store=pcmall&rows=" + rows + "&start=0";
             XmlTextReader reader = new XmlTextReader(URL);
