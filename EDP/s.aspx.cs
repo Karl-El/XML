@@ -33,7 +33,7 @@ namespace EDP
         {
             rows = drpdwnlst_View.SelectedValue;
             rdbtnlstDataSourceBrands();
-            ViewAllInfo();
+            ViewAllInfoByRow();
         }
 
         public void rdbtnlstDataSourceBrands()
@@ -73,6 +73,16 @@ namespace EDP
         }
 
         public void ViewAllInfo()
+        {
+            EDPinString = SearchedEDP.EDPinString(q, rows);
+            DataTable dt_Info = new DataTable();
+            dt_Info = ProdInfo.ShowInfo(EDPinString);
+            lstvw_Prodinfo.DataSource = dt_Info;
+            lstvw_Prodinfo.DataBind();
+            Response.Write(EDPinString);
+        }
+
+        public void ViewAllInfoByRow()
         {
             EDPinString = SearchedEDP.EDPinString(q, rows);
             DataTable dt_Info = new DataTable();
