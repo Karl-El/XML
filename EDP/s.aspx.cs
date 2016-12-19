@@ -33,7 +33,10 @@ namespace EDP
         {
             rows = drpdwnlst_View.SelectedValue;
             rdbtnlstDataSourceBrands();
-            ViewAllInfo();
+            if (!IsPostBack)
+            {
+                ViewAllInfo();
+            }
         }
 
         public void rdbtnlstDataSourceBrands()

@@ -12,7 +12,7 @@ namespace EDP
         SearchedEDP SearchedEDP = new SearchedEDP();
         DSManufacturer DSManufacturer = new DSManufacturer();
 
-        string Q = "laptop", ROWS = "200";
+        string Q = "laptop", ROWS = "5";
         protected void Page_Load(object sender, EventArgs e)
         {
             string EDP = SearchedEDP.EDPinString(Q, ROWS);

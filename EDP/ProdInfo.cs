@@ -72,9 +72,10 @@ namespace EDP
                 if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "item")
                 {
                     reader.MoveToElement();
-                    reader.ReadToDescendant("manufacturer");
+                    reader.ReadToFollowing("manufacturer");
                     manufact = reader.ReadElementString("manufacturer");
-                    reader.ReadToDescendant("name");
+                    reader.MoveToElement();
+                    reader.ReadToFollowing("name");
                     name = reader.ReadElementString("name");
                     dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
                 }
