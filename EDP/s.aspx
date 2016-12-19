@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="col-sm-9 col-xs-12">
-                <%--<div class="panel panel-default">
+                <!--<div class="panel panel-default">
                     <div class="panel-body">
                         <div class="col-sm-3" style="text-align: center">
                             <br />
@@ -75,7 +75,7 @@
                             <asp:LinkButton ID="lnkbtn_AddToCart" runat="server" CssClass="btn btn-outline-primary" Font-Size="Small"><i class="fa fa-shopping-cart"></i>  Add to Cart</asp:LinkButton>
                         </div>
                     </div>
-                </div>--%>
+                </div>-->
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <asp:ListView ID="lstvw_Prodinfo" runat="server" OnPagePropertiesChanging="lstvw_Prodinfo_PagePropertiesChanging" OnItemDataBound="lstvw_Prodinfo_ItemDataBound">
