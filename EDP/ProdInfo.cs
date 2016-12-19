@@ -74,6 +74,8 @@ namespace EDP
                     reader.MoveToElement();
                     reader.ReadToDescendant("manufacturer");
                     manufact = reader.ReadElementString("manufacturer");
+                    reader.ReadToDescendant("name");
+                    name = reader.ReadElementString("name");
                     dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
                 }
             }
