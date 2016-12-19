@@ -69,34 +69,41 @@ namespace EDP
             reader.WhitespaceHandling = WhitespaceHandling.Significant;
             while (reader.Read())
             {
-                if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "item")
+                while (reader.ReadToFollowing("result"))
                 {
-                    if (reader.Name == "name")
+                    reader.ReadToFollowing("productDetails");
+                    while (reader.ReadToFollowing("manufacturer"))
                     {
-                        name = reader.ReadElementString("name");
-                    }
-                    if (reader.Name == "manufacturer")
-                    {
+
                         manufact = reader.ReadElementString("manufacturer");
+                        //reader.ReadToFollowing("storeSpecific");
+                        //reader.ReadToFollowing("store");
+                        //label_store.Add(reader.ReadElementString("store"));
+                        name = reader.ReadElementString("name");
+                        while (reader.Read())
+                        {
+                            desc = reader.Value;
+                            break;
+                        }
+                        while (reader.ReadToFollowing("finalPrice"))
+                        {
+                            finalprice = reader.ReadElementString("finalPrice");
+                            break;
+                        }
+                        reader.ReadToFollowing("availabilityDescription");
+                        if (reader.Name == "availabilityDescription") //
+                        {
+                            availdesc = reader.ReadElementString("availabilityDescription");
+                        }
+                        reader.ReadToFollowing("image");
+                        reader.ReadToFollowing("xlg");
+                        if (reader.Name == "xlg") //
+                        {
+                            imageurl = reader.ReadElementString("xlg");
+                        }
                     }
-                    if (reader.Name == "description")
-                    {
-                        desc = reader.ReadElementString("description");
-                    }
-                    if (reader.Name == "finalPrice")
-                    {
-                        finalprice = reader.ReadElementString("finalPrice");
-                    }
-                    if (reader.Name == "availabilityDescription")
-                    {
-                        availdesc = reader.ReadElementString("availabilityDescription");
-                    }
-                    if (reader.Name == "xlg")
-                    {
-                        imageurl = reader.ReadElementString("xlg");
-                    }
-                    dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
                 }
+                dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
             }
             return dt_ProdInfo;
         }
