@@ -59,11 +59,11 @@ namespace EDP
         public static DataTable ShowInfo(string getEDP)
         {
             DataTable dt_ProdInfo = new DataTable();
-            dt_ProdInfo.Columns.AddRange(new DataColumn[6]
+            dt_ProdInfo.Columns.AddRange(new DataColumn[7]
             { new DataColumn("ProdName", typeof(string)),new DataColumn("ProdManufact", typeof(string)),new DataColumn("ProdDesc", typeof(string)),
-            new DataColumn("ProdFinPrice", typeof(string)),new DataColumn("ProdAvailDesc", typeof(string)),new DataColumn("ProdImgURl", typeof(string)),
-            });
-            string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "";
+            new DataColumn("ProdFinPrice", typeof(string)),new DataColumn("ProdAvailDesc", typeof(string)),new DataColumn("ProdImgURl", typeof(string))
+            ,new DataColumn("ProdBtnTxt", typeof(string))});
+            string name = "", manufact = "", desc = "", finalprice = "", availdesc = "", imageurl = "", buttontxt="";
             string URL = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + getEDP + "&ignoreCatalog=true";
             XmlTextReader reader = new XmlTextReader(URL);
             reader.WhitespaceHandling = WhitespaceHandling.Significant;
@@ -77,7 +77,17 @@ namespace EDP
                     reader.MoveToElement();
                     reader.ReadToFollowing("name");
                     name = reader.ReadElementString("name");
-                    dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
+                    reader.MoveToElement();
+                    if (reader.Name == "description")
+                    {
+                        desc = reader.ReadElementString("description");
+                    }
+                    reader.MoveToElement();
+                    reader.ReadToFollowing("finalPrice");
+                    finalprice = reader.ReadElementString("finalPrice");
+                    reader.MoveToElement();
+                    buttontxt = reader.ReadElementString("priceButtonDescription");
+                    dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl, "<i class='fa fa-shopping-cart'></i>   " + buttontxt);
                 }
             }
             return dt_ProdInfo;

@@ -113,7 +113,7 @@
                                             <asp:ListItem>3</asp:ListItem>
                                             <asp:ListItem>4</asp:ListItem>
                                         </asp:DropDownList><br />
-                                        <asp:LinkButton ID="lnkbtn_AddToCart" runat="server" CssClass="btn btn-outline-primary" Font-Size="Small"><i class="fa fa-shopping-cart"></i>  Add to Cart</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtn_AddToCart" runat="server" CssClass="btn btn-outline-primary" Font-Size="Small" Text='<%# Eval("ProdBtnTxt")%>'></asp:LinkButton>
                                     </div>
                                 </div>
                                 <hr />
