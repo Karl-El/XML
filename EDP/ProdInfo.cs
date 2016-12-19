@@ -71,37 +71,30 @@ namespace EDP
             {
                 if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "item")
                 {
-                    reader.MoveToElement();
-                    reader.ReadToFollowing("manufacturer");
-                    if (reader.Name == "manufacturer")
-                    {
-                        manufact = reader.ReadElementString("manufacturer");
-                    }
-                    reader.MoveToElement();
-                    reader.ReadToFollowing("name");
                     if (reader.Name == "name")
                     {
                         name = reader.ReadElementString("name");
                     }
-                    reader.MoveToElement();
+                    if (reader.Name == "manufacturer")
+                    {
+                        manufact = reader.ReadElementString("manufacturer");
+                    }
                     if (reader.Name == "description")
                     {
                         desc = reader.ReadElementString("description");
                     }
-                    reader.MoveToElement();
-                    reader.ReadToFollowing("finalPrice");
-                    finalprice = reader.ReadElementString("finalPrice");
-                    reader.MoveToElement();
-                    buttontxt = reader.ReadElementString("priceButtonDescription");
-                    reader.MoveToElement();
-                    reader.ReadToFollowing("availabilityDescription");
-                    availdesc = reader.ReadElementString("availabilityDescription");
-                    //reader.MoveToElement();
-                    //reader.ReadToFollowing("xlg");
-                    //if (reader.Name == "description")
-                    //{
-                    //    imageurl = reader.ReadElementString("xlg");
-                    //}
+                    if (reader.Name == "finalPrice")
+                    {
+                        finalprice = reader.ReadElementString("finalPrice");
+                    }
+                    if (reader.Name == "availabilityDescription")
+                    {
+                        availdesc = reader.ReadElementString("availabilityDescription");
+                    }
+                    if (reader.Name == "xlg")
+                    {
+                        imageurl = reader.ReadElementString("xlg");
+                    }
                     dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl, "<i class='fa fa-shopping-cart'></i>   " + buttontxt);
                 }
             }
@@ -146,3 +139,48 @@ namespace EDP
 
     }
 }
+
+         /*while (reader.Read())
+           {
+               if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "item")
+               {
+                   reader.MoveToElement();
+                   reader.ReadToFollowing("manufacturer");
+                   if (reader.Name == "manufacturer")
+                   {
+                       manufact = reader.ReadElementString("manufacturer");
+                   }
+                   reader.MoveToElement();
+                   reader.ReadToFollowing("name");
+                   if (reader.Name == "name")
+                   {
+                       name = reader.ReadElementString("name");
+                   }
+                   reader.MoveToElement();
+                   if (reader.Name == "description")
+                   {
+                       desc = reader.ReadElementString("description");
+                   }
+                   reader.MoveToElement();
+                   reader.ReadToFollowing("finalPrice");
+                   if (reader.Name == "finalPrice")
+                   {
+                       finalprice = reader.ReadElementString("finalPrice");
+                   }
+                   reader.MoveToElement();
+                   if (reader.Name == "priceButtonDescription")
+                   {
+                       buttontxt = reader.ReadElementString("priceButtonDescription");
+                   }
+                   reader.MoveToElement();
+                   reader.ReadToFollowing("availabilityDescription");
+                   if (reader.Name == "availabilityDescription")
+                   {
+                       availdesc = reader.ReadElementString("availabilityDescription");
+                   }
+                   reader.MoveToElement();
+                   reader.ReadToFollowing("xlg");
+                   if (reader.Name == "description")
+                   {
+                       imageurl = reader.ReadElementString("xlg");
+                   }*/
