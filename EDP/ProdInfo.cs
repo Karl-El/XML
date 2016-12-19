@@ -69,39 +69,13 @@ namespace EDP
             reader.WhitespaceHandling = WhitespaceHandling.Significant;
             while (reader.Read())
             {
-                while (reader.ReadToFollowing("result"))
+                if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "item")
                 {
-                    reader.ReadToFollowing("productDetails");
-                    while (reader.ReadToFollowing("manufacturer"))
-                    {
-                        manufact = (reader.ReadElementString("manufacturer"));
-                        reader.ReadToFollowing("storeSpecific");
-                        reader.ReadToFollowing("store");
-                        label_store.Add(reader.ReadElementString("store"));
-                        label_productName.Add(reader.ReadElementString("name"));
-                        while (reader.Read())
-                        {
-                            label_productdescription.Add(reader.Value);
-                            break;
-                        }
-                        while (reader.ReadToFollowing("finalPrice"))
-                        {
-                            label_Price.Add(reader.ReadElementString("finalPrice")); break;
-                        }
-                        reader.ReadToFollowing("availabilityDescription");
-                        if (reader.Name == "availabilityDescription") //
-                        {
-                            label_availabilityDescription.Add(reader.ReadElementString("availabilityDescription"));
-                        }
-                        reader.ReadToFollowing("image");
-                        reader.ReadToFollowing("xlg");
-                        if (reader.Name == "xlg") //
-                        {
-                            imageSourceUrl.Add(reader.ReadElementString("xlg"));
-                        }
-                    }
+                    reader.MoveToElement();
+                    reader.ReadToDescendant("manufacturer");
+                    manufact = reader.ReadElementString("manufacturer");
+                    dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
                 }
-                dt_ProdInfo.Rows.Add(name, manufact, desc, "$ " + finalprice, availdesc, imageurl);
             }
             return dt_ProdInfo;
         }
@@ -142,46 +116,5 @@ namespace EDP
                 }
             }*/
 
-        //---------------------------------------------------AIZELCODE
-
-        /* while (reader.Read())
-        {
-            while (reader.ReadToFollowing("result"))
-            {
-                reader.ReadToFollowing("productDetails");
-                while (reader.ReadToFollowing("manufacturer"))
-                {
-
-                    label_Manufacturer.Add(reader.ReadElementString("manufacturer"));
-
-
-                    reader.ReadToFollowing("storeSpecific");
-                    reader.ReadToFollowing("store");
-                    label_store.Add(reader.ReadElementString("store"));
-                    label_productName.Add(reader.ReadElementString("name"));
-                    while (reader.Read())
-                    {
-                        label_productdescription.Add(reader.Value);
-                        break;
-                    }
-                    while (reader.ReadToFollowing("finalPrice"))
-                    {
-                        label_Price.Add(reader.ReadElementString("finalPrice")); break;
-                    }
-                    reader.ReadToFollowing("availabilityDescription");
-                    if (reader.Name == "availabilityDescription") //
-                    {
-                        label_availabilityDescription.Add(reader.ReadElementString("availabilityDescription"));
-                    }
-                    reader.ReadToFollowing("image");
-                    reader.ReadToFollowing("xlg");
-                    if (reader.Name == "xlg") //
-                    {
-                        imageSourceUrl.Add(reader.ReadElementString("xlg")); 
-                    }
-                }
-            }
-        }
-*/
     }
 }

@@ -123,13 +123,13 @@
                         </asp:Repeater>
                         <asp:PlaceHolder ID="plchldr_Prod" runat="server"></asp:PlaceHolder>
                         <br />
-                        <asp:DataPager ID="dtdpgr_ProdInfo" runat="server" PageSize="5" PagedControlID="lstvw_Prodinfo">
+                       <!-- <asp:DataPager ID="dtdpgr_ProdInfo" runat="server" PageSize="5" PagedControlID="lstvw_Prodinfo">
                             <Fields>
                                 <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="True" ButtonCssClass="btn btn-outline-success" />
                                 <asp:NumericPagerField ButtonType="Link" CurrentPageLabelCssClass="label label-info" NumericButtonCssClass="badge label-success" />
                                 <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True" ShowNextPageButton="True" ShowPreviousPageButton="False" ButtonCssClass="btn btn-outline-success" />
                             </Fields>
-                        </asp:DataPager>
+                        </asp:DataPager>-->
                     </div>
                 </div>
             </div>
