@@ -74,32 +74,30 @@ namespace EDP
                     reader.ReadToFollowing("productDetails");
                     while (reader.ReadToFollowing("manufacturer"))
                     {
-
-                        manufact = reader.ReadElementString("manufacturer");
-                        //reader.ReadToFollowing("storeSpecific");
-                        //reader.ReadToFollowing("store");
-                        //label_store.Add(reader.ReadElementString("store"));
-                        name = reader.ReadElementString("name");
+                        manufact = (reader.ReadElementString("manufacturer"));
+                        reader.ReadToFollowing("storeSpecific");
+                        reader.ReadToFollowing("store");
+                        label_store.Add(reader.ReadElementString("store"));
+                        label_productName.Add(reader.ReadElementString("name"));
                         while (reader.Read())
                         {
-                            desc = reader.Value;
+                            label_productdescription.Add(reader.Value);
                             break;
                         }
                         while (reader.ReadToFollowing("finalPrice"))
                         {
-                            finalprice = reader.ReadElementString("finalPrice");
-                            break;
+                            label_Price.Add(reader.ReadElementString("finalPrice")); break;
                         }
                         reader.ReadToFollowing("availabilityDescription");
                         if (reader.Name == "availabilityDescription") //
                         {
-                            availdesc = reader.ReadElementString("availabilityDescription");
+                            label_availabilityDescription.Add(reader.ReadElementString("availabilityDescription"));
                         }
                         reader.ReadToFollowing("image");
                         reader.ReadToFollowing("xlg");
                         if (reader.Name == "xlg") //
                         {
-                            imageurl = reader.ReadElementString("xlg");
+                            imageSourceUrl.Add(reader.ReadElementString("xlg"));
                         }
                     }
                 }
@@ -143,5 +141,47 @@ namespace EDP
 
                 }
             }*/
+
+        //---------------------------------------------------AIZELCODE
+
+        /* while (reader.Read())
+        {
+            while (reader.ReadToFollowing("result"))
+            {
+                reader.ReadToFollowing("productDetails");
+                while (reader.ReadToFollowing("manufacturer"))
+                {
+
+                    label_Manufacturer.Add(reader.ReadElementString("manufacturer"));
+
+
+                    reader.ReadToFollowing("storeSpecific");
+                    reader.ReadToFollowing("store");
+                    label_store.Add(reader.ReadElementString("store"));
+                    label_productName.Add(reader.ReadElementString("name"));
+                    while (reader.Read())
+                    {
+                        label_productdescription.Add(reader.Value);
+                        break;
+                    }
+                    while (reader.ReadToFollowing("finalPrice"))
+                    {
+                        label_Price.Add(reader.ReadElementString("finalPrice")); break;
+                    }
+                    reader.ReadToFollowing("availabilityDescription");
+                    if (reader.Name == "availabilityDescription") //
+                    {
+                        label_availabilityDescription.Add(reader.ReadElementString("availabilityDescription"));
+                    }
+                    reader.ReadToFollowing("image");
+                    reader.ReadToFollowing("xlg");
+                    if (reader.Name == "xlg") //
+                    {
+                        imageSourceUrl.Add(reader.ReadElementString("xlg")); 
+                    }
+                }
+            }
+        }
+*/
     }
 }
