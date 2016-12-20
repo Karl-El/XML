@@ -79,7 +79,6 @@ namespace EDP
             dt_Info = ProdInfo.ShowInfo(EDPinString);
             lstvw_Prodinfo.DataSource = dt_Info;
             lstvw_Prodinfo.DataBind();
-            Response.Write(EDPinString);
         }
     }
 }
