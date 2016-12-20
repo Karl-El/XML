@@ -95,7 +95,7 @@
                                         <asp:Label CssClass="control-label" ID="lbl_ProdDesc" runat="server" Text='<%# Eval("ProdDesc") %>' Font-Size="Small"></asp:Label>
                                         <p>
                                             <label style="font-size: small">Availability:</label>
-                                            <asp:Label CssClass="control-label" ID="lbl_StockDesc" runat="server" Text='<%# Eval("ProdAvailDesc")%>' Font-Size="Small" ForeColor="#009900"></asp:Label>
+                                            <asp:Label CssClass="control-label" ID="lbl_StockDesc" runat="server" Text='<%# Eval("ProdAvailDesc")%>' Font-Size="Small"></asp:Label>
                                         </p>
                                         <p>
                                             <label style="font-size: small">Manufacturer:</label>
