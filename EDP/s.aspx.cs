@@ -51,25 +51,27 @@ namespace EDP
         protected void lstvw_Prodinfo_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             //dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-            ViewAllInfo();
+            //ViewAllInfo();
         }
 
         protected void lstvw_Prodinfo_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
-            Label lbl_StockDes;
+            Label lbl_StockDesc;
             LinkButton lnkbtn_AddToCart;
-            /*if (e.Item.ItemType == ListViewItemType.DataItem)
+            
+            if (e.Item.ItemType == ListViewItemType.DataItem)
             {
-                lbl_StockDes = (Label)e.Item.FindControl("lbl_StockDes");
+                System.Data.DataRowView rowView = e.Item.DataItem as System.Data.DataRowView;
+                lbl_StockDesc = (Label)e.Item.FindControl("lbl_StockDesc");
                 lnkbtn_AddToCart = (LinkButton)e.Item.FindControl("lnkbtn_AddToCart");
+                lbl_StockDesc.Text = rowView["ProdAvailDesc"].ToString();
 
-                if (lbl_StockDes.Text == "Temporarily out of stock. Order today and we'll deliver when available")
+                if (lbl_StockDesc.Text == "Temporarily out of stock. Order today and we'll deliver when available")
                 {
-                    lbl_StockDes.ForeColor = Color.Red;
-                    lnkbtn_AddToCart.Text = "Pre-Order Now";
+                    lbl_StockDesc.ForeColor = Color.Red;
                 }
 
-            }*/
+            }
         }
 
         public void ViewAllInfo()
