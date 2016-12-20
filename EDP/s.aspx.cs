@@ -13,7 +13,7 @@ namespace EDP
     public partial class s : System.Web.UI.Page
     {
         string q = "", EDPinString = "", NumFound = "";
-        static int MinPage = 0, MaxPage = 0, NumPage = 0, rows = 5, start = 0;
+        static int MinPage = 0, MaxPage = 0, NumPage = 0, rows = 0, start = 0;
         List<string> EDPs;
 
         SearchedEDP SearchedEDP = new SearchedEDP();
@@ -36,8 +36,6 @@ namespace EDP
             NumPage = NumPage + 1;
             start = NumPage * rows;
             Response.Redirect(String.Format("s.aspx?q={0}&page={1}", q, NumPage));
-            ViewAllInfo();
-            Response.Write(start + "<br/>" + rows);
         }
 
         protected void lnkbtn_Prev_Click(object sender, EventArgs e)
@@ -64,12 +62,6 @@ namespace EDP
             {
                 rdbtnlst_Brand.Items.Add(new ListItem(Brands[i]));
             }
-        }
-
-        protected void lstvw_Prodinfo_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
-        {
-            //dtdpgr_ProdInfo.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-            //ViewAllInfo();
         }
 
         protected void lstvw_Prodinfo_ItemDataBound(object sender, ListViewItemEventArgs e)

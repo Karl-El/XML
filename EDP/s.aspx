@@ -70,7 +70,7 @@
             <div class="col-sm-9 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <asp:ListView ID="lstvw_Prodinfo" runat="server" OnPagePropertiesChanging="lstvw_Prodinfo_PagePropertiesChanging" OnItemDataBound="lstvw_Prodinfo_ItemDataBound">
+                        <asp:ListView ID="lstvw_Prodinfo" runat="server" OnItemDataBound="lstvw_Prodinfo_ItemDataBound">
                             <ItemTemplate>
                                 <div class="row">
                                     <div class="col-sm-3" style="text-align: center">
