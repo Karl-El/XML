@@ -20,12 +20,26 @@
                                         <asp:ListItem>100</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
+                                <div class="form-group"></div>
                                 <div class="form-group">
                                     <asp:Label ID="lbl_MinPage" runat="server" Text="Min " CssClass="control-label" Font-Bold="true"></asp:Label>
                                     <label>-</label>
                                     <asp:Label ID="lbl_MaxPage" runat="server" Text="Max " CssClass="control-label" Font-Bold="true"></asp:Label>
                                     <asp:Label ID="Label2" runat="server" Text="of " CssClass="control-label"></asp:Label>
                                     <asp:Label ID="lbl_NumFound" runat="server" Text="1100 " CssClass="control-label" Font-Bold="true"></asp:Label>
+                                </div>
+                                <div class="form-group"></div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <asp:LinkButton ID="lnkbtn_Prev" runat="server" CssClass=" btn btn-outline-success"><i class="fa fa-hand-o-left" aria-hidden="true"></i>  Previous</asp:LinkButton>
+                                        </span>
+                                        <asp:Label ID="lbl_CurrentPage" runat="server" CssClass=" form-control">10</asp:Label>
+                                        <span class="input-group-btn">
+                                            <asp:LinkButton ID="lnk_GoToPage" runat="server" CssClass=" btn btn-outline-primary"><i class="fa fa-share" aria-hidden="true"></i>  Go To</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtn_Nxt" runat="server" CssClass=" btn btn-outline-success"><i class="fa fa-hand-o-right" aria-hidden="true"></i>  Next</asp:LinkButton>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

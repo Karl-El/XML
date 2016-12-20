@@ -67,6 +67,42 @@ namespace EDP {
         protected global::System.Web.UI.WebControls.Label lbl_NumFound;
         
         /// <summary>
+        /// lnkbtn_Prev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtn_Prev;
+        
+        /// <summary>
+        /// lbl_CurrentPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_CurrentPage;
+        
+        /// <summary>
+        /// lnk_GoToPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnk_GoToPage;
+        
+        /// <summary>
+        /// lnkbtn_Nxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtn_Nxt;
+        
+        /// <summary>
         /// lnkbtn_ClearFilter control.
         /// </summary>
         /// <remarks>
