@@ -23,11 +23,11 @@ namespace EDP
         protected void Page_Load(object sender, EventArgs e)
         {
             q = Request.QueryString["q"];
-            drpdwnlst_View.SelectedValue = Request.QueryString["rpp"];
             if (!IsPostBack)
             {
                 ViewAllInfo();
                 rdbtnlstDataSourceBrands();
+                drpdwnlst_View.SelectedValue = Request.QueryString["rpp"];
             }
         }
 
@@ -36,8 +36,7 @@ namespace EDP
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
             NumPage = NumPage + 1;
             start = NumPage * rows;
-            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri + "&page=" + NumPage);
-            //Response.Redirect(String.Format("s.aspx?q={0}&page={1}&rpp={2}", q, NumPage, rows));
+            Response.Redirect(String.Format("s.aspx?q={0}&rpp={1}&page={2}", q, rows, NumPage));
         }
 
         protected void lnkbtn_Prev_Click(object sender, EventArgs e)
@@ -49,8 +48,7 @@ namespace EDP
         {
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
             rdbtnlstDataSourceBrands();
-            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri + "&rpp=" + rows);
-            //Response.Redirect(String.Format("s.aspx?q={0}&page={1}&rpp={2}", q, NumPage, rows));
+            Response.Redirect(String.Format("s.aspx?q={0}&rpp={1}", q, rows));
         }
 
         public void rdbtnlstDataSourceBrands()
