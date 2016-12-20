@@ -13,7 +13,7 @@ namespace EDP
     public partial class s : System.Web.UI.Page
     {
         string q = "", EDPinString = "", NumFound = "";
-       static int MinPage = 0, MaxPage = 0, NumPage = 0, rows = 5, start = 0;
+        static int MinPage = 0, MaxPage = 0, NumPage = 0, rows = 5, start = 0;
         List<string> EDPs;
 
         SearchedEDP SearchedEDP = new SearchedEDP();
@@ -33,11 +33,9 @@ namespace EDP
         protected void lnkbtn_Nxt_Click(object sender, EventArgs e)
         {
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
-            //start = rows - 1;
-            
-
             NumPage = NumPage + 1;
             start = NumPage * rows;
+            Response.Redirect(String.Format("s.aspx?q={0}&page={1}", q, NumPage));
             ViewAllInfo();
             Response.Write(start + "<br/>" + rows);
         }
