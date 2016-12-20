@@ -28,7 +28,7 @@ namespace EDP
             return (EDP);
         }
 
-        public string EDPinString(string q, string rows, string start)
+        public string EDPinString(string q, int rows, int start)
         {
             string[] StringedEDP = new string[] { };
             List<string> EDP = new List<string>();

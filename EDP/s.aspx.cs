@@ -12,8 +12,8 @@ namespace EDP
 {
     public partial class s : System.Web.UI.Page
     {
-        string q = "", rows = "5", start = "0", EDPinString = "";
-        int MinPage = 0, MaxPage = 0;
+        string q = "", EDPinString = "", NumFound = "";
+       static int MinPage = 0, MaxPage = 0, NumPage = 0, rows = 5, start = 0;
         List<string> EDPs;
 
         SearchedEDP SearchedEDP = new SearchedEDP();
@@ -30,10 +30,28 @@ namespace EDP
             }
         }
 
+        protected void lnkbtn_Nxt_Click(object sender, EventArgs e)
+        {
+            rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
+            //start = rows - 1;
+            
+
+            NumPage = NumPage + 1;
+            start = NumPage * rows;
+            ViewAllInfo();
+            Response.Write(start + "<br/>" + rows);
+        }
+
+        protected void lnkbtn_Prev_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rows = drpdwnlst_View.SelectedValue;
-
+            rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
+            MaxPage = Convert.ToInt32(rows) + Convert.ToInt32(start);
+            lbl_MaxPage.Text = MaxPage.ToString();
             rdbtnlstDataSourceBrands();
             ViewAllInfo();
         }
@@ -68,17 +86,11 @@ namespace EDP
                 lnkbtn_AddToCart = (LinkButton)e.Item.FindControl("lnkbtn_AddToCart");
 
                 if (lbl_StockDesc.Text == "In stock. Usually ships next business day.")
-                {
-                    lbl_StockDesc.ForeColor = ColorTranslator.FromHtml("#009900");
-                }
+                { lbl_StockDesc.ForeColor = ColorTranslator.FromHtml("#009900"); }
                 if (lbl_StockDesc.Text == "Sold Out")
-                {
-                    lbl_StockDesc.ForeColor = Color.Red;
-                }
+                { lbl_StockDesc.ForeColor = Color.Red; }
                 if (lbl_StockDesc.Text == "Temporarily out of stock. Order today and we'll deliver when available.")
-                {
-                    lbl_StockDesc.ForeColor = Color.Orange;
-                }
+                { lbl_StockDesc.ForeColor = Color.Orange; }
             }
         }
 
