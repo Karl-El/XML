@@ -75,7 +75,7 @@ namespace EDP
                 }
                 if (lbl_StockDesc.Text == "Temporarily out of stock. Order today and we'll deliver when available.")
                 {
-                    lbl_StockDesc.ForeColor = Color.OrangeRed;
+                    lbl_StockDesc.ForeColor = Color.Orange;
                 }
             }
         }
