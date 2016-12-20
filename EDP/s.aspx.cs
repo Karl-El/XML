@@ -12,7 +12,8 @@ namespace EDP
 {
     public partial class s : System.Web.UI.Page
     {
-        string q = "", rows = "5", EDPinString = "";
+        string q = "", rows = "5", start = "0", EDPinString = "";
+        int MinPage = 0, MaxPage = 0;
         List<string> EDPs;
 
         SearchedEDP SearchedEDP = new SearchedEDP();
@@ -32,6 +33,7 @@ namespace EDP
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
         {
             rows = drpdwnlst_View.SelectedValue;
+
             rdbtnlstDataSourceBrands();
             ViewAllInfo();
         }
@@ -39,7 +41,7 @@ namespace EDP
         public void rdbtnlstDataSourceBrands()
         {
             List<string> Brands;
-            EDPinString = SearchedEDP.EDPinString(q, rows);
+            EDPinString = SearchedEDP.EDPinString(q, rows, start);
             Brands = DSManufacturer.EDPListByManufact(EDPinString);
             rdbtnlst_Brand.Items.Clear();
             for (int i = 0; i < Brands.Count; i++)
@@ -58,7 +60,7 @@ namespace EDP
         {
             Label lbl_StockDesc;
             LinkButton lnkbtn_AddToCart;
-            
+
             if (e.Item.ItemType == ListViewItemType.DataItem)
             {
                 System.Data.DataRowView rowView = e.Item.DataItem as System.Data.DataRowView;
@@ -82,7 +84,7 @@ namespace EDP
 
         public void ViewAllInfo()
         {
-            EDPinString = SearchedEDP.EDPinString(q, rows);
+            EDPinString = SearchedEDP.EDPinString(q, rows, start);
             DataTable dt_Info = new DataTable();
             dt_Info = ProdInfo.ShowInfo(EDPinString);
             lstvw_Prodinfo.DataSource = dt_Info;
