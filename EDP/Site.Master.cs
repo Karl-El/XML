@@ -17,6 +17,7 @@ namespace EDP
         protected void lnbtn_Search_Click(object sender, EventArgs e)
         {
             string q = txt_Search.Text.Trim();
+            q = q.Replace(" ", "+");
             Response.Redirect("s.aspx?q=" + q);
         }
     }

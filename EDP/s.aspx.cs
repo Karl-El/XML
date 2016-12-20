@@ -64,15 +64,18 @@ namespace EDP
                 System.Data.DataRowView rowView = e.Item.DataItem as System.Data.DataRowView;
                 lbl_StockDesc = (Label)e.Item.FindControl("lbl_StockDesc");
                 lnkbtn_AddToCart = (LinkButton)e.Item.FindControl("lnkbtn_AddToCart");
-                //lbl_StockDesc.Text = rowView["ProdAvailDesc"].ToString();
 
-                if (lbl_StockDesc.Text != "In stock. Usually ships next business day.")
-                {
-                    lbl_StockDesc.ForeColor = Color.Orange;
-                }
-                else
+                if (lbl_StockDesc.Text == "In stock. Usually ships next business day.")
                 {
                     lbl_StockDesc.ForeColor = ColorTranslator.FromHtml("#009900");
+                }
+                if (lbl_StockDesc.Text == "Sold Out")
+                {
+                    lbl_StockDesc.ForeColor = Color.Red;
+                }
+                if (lbl_StockDesc.Text == "Temporarily out of stock. Order today and we'll deliver when available.")
+                {
+                    lbl_StockDesc.ForeColor = Color.OrangeRed;
                 }
             }
         }
