@@ -76,15 +76,6 @@ namespace EDP {
         protected global::System.Web.UI.WebControls.LinkButton lnkbtn_Prev;
         
         /// <summary>
-        /// lbl_CurrentPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_CurrentPage;
-        
-        /// <summary>
         /// lnkbtn_Nxt control.
         /// </summary>
         /// <remarks>

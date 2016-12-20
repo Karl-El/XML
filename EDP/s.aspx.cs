@@ -23,6 +23,7 @@ namespace EDP
         protected void Page_Load(object sender, EventArgs e)
         {
             q = Request.QueryString["q"];
+            drpdwnlst_View.SelectedValue = Request.QueryString["rpp"];
             if (!IsPostBack)
             {
                 ViewAllInfo();
@@ -35,7 +36,8 @@ namespace EDP
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
             NumPage = NumPage + 1;
             start = NumPage * rows;
-            Response.Redirect(String.Format("s.aspx?q={0}&page={1}", q, NumPage));
+            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri + "&page=" + NumPage);
+            //Response.Redirect(String.Format("s.aspx?q={0}&page={1}&rpp={2}", q, NumPage, rows));
         }
 
         protected void lnkbtn_Prev_Click(object sender, EventArgs e)
@@ -46,10 +48,9 @@ namespace EDP
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
         {
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
-            MaxPage = Convert.ToInt32(rows) + Convert.ToInt32(start);
-            lbl_MaxPage.Text = MaxPage.ToString();
             rdbtnlstDataSourceBrands();
-            ViewAllInfo();
+            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri + "&rpp=" + rows);
+            //Response.Redirect(String.Format("s.aspx?q={0}&page={1}&rpp={2}", q, NumPage, rows));
         }
 
         public void rdbtnlstDataSourceBrands()
