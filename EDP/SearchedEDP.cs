@@ -33,7 +33,7 @@ namespace EDP
             string[] StringedEDP = new string[] { };
             List<string> EDP = new List<string>();
             EDP.Clear();
-            string URL = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + q + "&fl=EDP&store=pcmall&rows=" + rows + "&start="+start;
+            string URL = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + q + "&fl=EDP&store=pcmall&rows=" + rows + "&start=" + start;
             XmlTextReader reader = new XmlTextReader(URL);
             while (reader.ReadToFollowing("result"))
             {
@@ -75,6 +75,19 @@ namespace EDP
             string EDPString = string.Join(",", StringedEDP);
             return (EDPString);
         }
+
+        public string ResultFound(string q, int rows, int start)
+        {
+            string NumFound = "";
+            string URL = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + q + "&fl=EDP&store=pcmall&rows=" + rows + "&start=" + start;
+            XmlTextReader reader = new XmlTextReader(URL);
+            while (reader.ReadToFollowing("result"))
+            {
+                NumFound = reader.GetAttribute("numFound");
+            }
+            return (NumFound);
+        }
     }
 }
+
 //http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + Findproduct + "&fl=EDP&store=pcmall&rows=" + ProductLimitView + "&start=" + StartRead + "&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + BrandLimit

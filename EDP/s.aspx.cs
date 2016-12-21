@@ -25,14 +25,8 @@ namespace EDP
             q = Request.QueryString["q"];
             if (!IsPostBack)
             {
-                ViewAllInfo();
-                rdbtnlstDataSourceBrands();
-                drpdwnlst_View.SelectedValue = Request.QueryString["rpp"];
-                MinPage = rows * NumPage;
-                MaxPage = rows + MinPage;
-                MinPage = MinPage + 1;
-                lbl_MaxPage.Text = MaxPage.ToString();
-                lbl_MinPage.Text = MinPage.ToString();
+                ViewAllInfo(); rdbtnlstDataSourceBrands(); drpdwnlst_View.SelectedValue = Request.QueryString["rpp"];
+                MinPage = rows * NumPage; MaxPage = rows + MinPage; MinPage = MinPage + 1; lbl_MaxPage.Text = MaxPage.ToString(); lbl_MinPage.Text = MinPage.ToString();
             }
         }
 
@@ -41,19 +35,21 @@ namespace EDP
             string[] separateURL = currentUrl.Split('?');
             NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue); NumPage = NumPage + 1; start = NumPage * rows;
-            MinPage = rows * NumPage; MaxPage = rows + MinPage; lbl_MaxPage.Text = MaxPage.ToString(); lbl_MinPage.Text = MinPage.ToString();
             queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString["page"] = NumPage.ToString();
             currentUrl = separateURL[0] + "?" + queryString.ToString(); Response.Redirect(currentUrl);
         }
 
         protected void lnkbtn_Prev_Click(object sender, EventArgs e)
         {
-            string[] separateURL = currentUrl.Split('?');
-            NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
-            rows = Convert.ToInt32(drpdwnlst_View.SelectedValue); NumPage = NumPage - 1; start = NumPage * rows;
-            MinPage = rows * NumPage; MaxPage = rows + MinPage; lbl_MaxPage.Text = MaxPage.ToString(); lbl_MinPage.Text = MinPage.ToString();
-            queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString["page"] = NumPage.ToString();
-            currentUrl = separateURL[0] + "?" + queryString.ToString(); Response.Redirect(currentUrl);
+            if (NumPage == 0) { }
+            else
+            {
+                string[] separateURL = currentUrl.Split('?');
+                NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
+                rows = Convert.ToInt32(drpdwnlst_View.SelectedValue); NumPage = NumPage - 1; start = NumPage * rows;
+                queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString["page"] = NumPage.ToString();
+                currentUrl = separateURL[0] + "?" + queryString.ToString(); Response.Redirect(currentUrl);
+            }
         }
 
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,7 +58,7 @@ namespace EDP
             NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
             NumPage = 0; queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString.Remove("page");
-            rdbtnlstDataSourceBrands(); currentUrl = separateURL[0] + "?" + queryString.ToString();
+            currentUrl = separateURL[0] + "?" + queryString.ToString();
             Response.Redirect(currentUrl);
         }
 
@@ -105,6 +101,8 @@ namespace EDP
             dt_Info = ProdInfo.ShowInfo(EDPinString);
             lstvw_Prodinfo.DataSource = dt_Info;
             lstvw_Prodinfo.DataBind();
+            NumFound = SearchedEDP.ResultFound(q, rows,start);
+            lbl_NumFound.Text = NumFound;
         }
     }
 }
