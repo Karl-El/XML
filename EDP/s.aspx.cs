@@ -15,7 +15,6 @@ namespace EDP
     {
         string q = "", EDPinString = "", NumFound = "", currentUrl = HttpContext.Current.Request.Url.AbsoluteUri;
         static int MinPage = 0, MaxPage = 0, NumPage = 0, rows = 5, start = 0;
-        List<string> EDPs;
 
         SearchedEDP SearchedEDP = new SearchedEDP();
         DSManufacturer DSManufacturer = new DSManufacturer();
@@ -29,6 +28,11 @@ namespace EDP
                 ViewAllInfo();
                 rdbtnlstDataSourceBrands();
                 drpdwnlst_View.SelectedValue = Request.QueryString["rpp"];
+                MinPage = rows * NumPage;
+                MaxPage = rows + MinPage;
+                MinPage = MinPage + 1;
+                lbl_MaxPage.Text = MaxPage.ToString();
+                lbl_MinPage.Text = MinPage.ToString();
             }
         }
 
@@ -36,20 +40,20 @@ namespace EDP
         {
             string[] separateURL = currentUrl.Split('?');
             NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
-            rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
-            NumPage = NumPage + 1;
-            start = NumPage * rows;
-            queryString["q"] = q;
-            queryString["rpp"] = rows.ToString();
-            queryString["page"] = NumPage.ToString();
-            currentUrl = separateURL[0] + "?" + queryString.ToString();
-            Response.Redirect(currentUrl);
-            // Response.Redirect(String.Format("s.aspx?q={0}&rpp={1}&page={2}", q, rows, NumPage));
+            rows = Convert.ToInt32(drpdwnlst_View.SelectedValue); NumPage = NumPage + 1; start = NumPage * rows;
+            MinPage = rows * NumPage; MaxPage = rows + MinPage; lbl_MaxPage.Text = MaxPage.ToString(); lbl_MinPage.Text = MinPage.ToString();
+            queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString["page"] = NumPage.ToString();
+            currentUrl = separateURL[0] + "?" + queryString.ToString(); Response.Redirect(currentUrl);
         }
 
         protected void lnkbtn_Prev_Click(object sender, EventArgs e)
         {
-
+            string[] separateURL = currentUrl.Split('?');
+            NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
+            rows = Convert.ToInt32(drpdwnlst_View.SelectedValue); NumPage = NumPage - 1; start = NumPage * rows;
+            MinPage = rows * NumPage; MaxPage = rows + MinPage; lbl_MaxPage.Text = MaxPage.ToString(); lbl_MinPage.Text = MinPage.ToString();
+            queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString["page"] = NumPage.ToString();
+            currentUrl = separateURL[0] + "?" + queryString.ToString(); Response.Redirect(currentUrl);
         }
 
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,14 +61,9 @@ namespace EDP
             string[] separateURL = currentUrl.Split('?');
             NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
-            NumPage = 0;
-            queryString["q"] = q;
-            queryString["rpp"] = rows.ToString();
-            queryString.Remove("page");
-            rdbtnlstDataSourceBrands();
-            currentUrl = separateURL[0] + "?" + queryString.ToString();
+            NumPage = 0; queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString.Remove("page");
+            rdbtnlstDataSourceBrands(); currentUrl = separateURL[0] + "?" + queryString.ToString();
             Response.Redirect(currentUrl);
-            //Response.Redirect(String.Format("s.aspx?q={0}&rpp={1}", q, rows));
         }
 
         public void rdbtnlstDataSourceBrands()
