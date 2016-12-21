@@ -69,7 +69,7 @@ namespace EDP
         public void rdbtnlstDataSourceBrands()
         {
             List<string> Brands;
-            EDPinString = SearchedEDP.EDPinString(q, rows, start);
+            EDPinString = SearchedEDP.EDPinStringForMan(q, rows);
             Brands = DSManufacturer.EDPListByManufact(EDPinString);
             rdbtnlst_Brand.Items.Clear();
             for (int i = 0; i < Brands.Count; i++)
