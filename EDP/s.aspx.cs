@@ -57,6 +57,7 @@ namespace EDP
             string[] separateURL = currentUrl.Split('?');
             NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
+            NumPage = 0;
             queryString["q"] = q;
             queryString["rpp"] = rows.ToString();
             queryString.Remove("page");
