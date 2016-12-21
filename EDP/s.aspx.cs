@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace EDP
 {
     public partial class s : System.Web.UI.Page
     {
-        string q = "", EDPinString = "", NumFound = "";
-        static int MinPage = 0, MaxPage = 0, NumPage = 0, rows = 0, start = 0;
+        string q = "", EDPinString = "", NumFound = "", currentUrl = HttpContext.Current.Request.Url.AbsoluteUri;
+        static int MinPage = 0, MaxPage = 0, NumPage = 0, rows = 5, start = 0;
         List<string> EDPs;
 
         SearchedEDP SearchedEDP = new SearchedEDP();
@@ -33,10 +34,17 @@ namespace EDP
 
         protected void lnkbtn_Nxt_Click(object sender, EventArgs e)
         {
+            string[] separateURL = currentUrl.Split('?');
+            NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
             NumPage = NumPage + 1;
             start = NumPage * rows;
-            Response.Redirect(String.Format("s.aspx?q={0}&rpp={1}&page={2}", q, rows, NumPage));
+            queryString["q"] = q;
+            queryString["rpp"] = rows.ToString();
+            queryString["page"] = NumPage.ToString();
+            currentUrl = separateURL[0] + "?" + queryString.ToString();
+            Response.Redirect(currentUrl);
+            // Response.Redirect(String.Format("s.aspx?q={0}&rpp={1}&page={2}", q, rows, NumPage));
         }
 
         protected void lnkbtn_Prev_Click(object sender, EventArgs e)
@@ -46,9 +54,16 @@ namespace EDP
 
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string[] separateURL = currentUrl.Split('?');
+            NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue);
+            queryString["q"] = q;
+            queryString["rpp"] = rows.ToString();
+            queryString.Remove("page");
             rdbtnlstDataSourceBrands();
-            Response.Redirect(String.Format("s.aspx?q={0}&rpp={1}", q, rows));
+            currentUrl = separateURL[0] + "?" + queryString.ToString();
+            Response.Redirect(currentUrl);
+            //Response.Redirect(String.Format("s.aspx?q={0}&rpp={1}", q, rows));
         }
 
         public void rdbtnlstDataSourceBrands()
