@@ -35,7 +35,7 @@ namespace EDP
             string[] separateURL = currentUrl.Split('?');
             NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
             rows = Convert.ToInt32(drpdwnlst_View.SelectedValue); NumPage = NumPage + 1; start = NumPage * rows;
-            queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString["page"] = NumPage.ToString();
+            queryString["q"] = q;/* queryString["rpp"] = rows.ToString();*/ queryString["page"] = NumPage.ToString();
             currentUrl = separateURL[0] + "?" + queryString.ToString(); Response.Redirect(currentUrl);
         }
 
@@ -47,7 +47,7 @@ namespace EDP
                 string[] separateURL = currentUrl.Split('?');
                 NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
                 rows = Convert.ToInt32(drpdwnlst_View.SelectedValue); NumPage = NumPage - 1; start = NumPage * rows;
-                queryString["q"] = q; queryString["rpp"] = rows.ToString(); queryString["page"] = NumPage.ToString();
+                queryString["q"] = q; /*queryString["rpp"] = rows.ToString();*/ queryString["page"] = NumPage.ToString();
                 currentUrl = separateURL[0] + "?" + queryString.ToString(); Response.Redirect(currentUrl);
             }
         }

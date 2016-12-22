@@ -33,9 +33,7 @@
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <asp:LinkButton ID="lnkbtn_Prev" runat="server" OnClick="lnkbtn_Prev_Click" CssClass=" btn btn-outline-success"><i class="fa fa-chevron-left" aria-hidden="true"></i>  </asp:LinkButton>
-                                        </span>
                                         <%--<asp:Label ID="lbl_CurrentPage" runat="server" CssClass=" form-control"></asp:Label>--%>
-                                        <span class="input-group-btn">
                                             <%--<asp:LinkButton ID="lnk_GoToPage" runat="server" CssClass=" btn btn-outline-primary"><i class="fa fa-share" aria-hidden="true"></i>  Go To</asp:LinkButton>--%>
                                             <asp:LinkButton ID="lnkbtn_Nxt" runat="server" OnClick="lnkbtn_Nxt_Click" CssClass=" btn btn-outline-success"><i class="fa fa-chevron-right" aria-hidden="true"></i>  </asp:LinkButton>
                                         </span>
